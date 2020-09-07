@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  gome-core:
+    build: /home/pi/gome/gome-core
+    image: gome-core:latest
+    ports:
+      - 6660:6660
+    volumes:
+      - /home/pi/gome:/database
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 120s
+    env_file:
+      - core-config.env
+
+  gome-schedule:
+    build: /home/pi/gome/gome-schedule
+    image: gome-schedule:latest
+    ports:
+      - 6661:6661
+    volumes:
+      - /home/pi/gome:/database
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 120s
+    env_file:
+      - schedule-config.env

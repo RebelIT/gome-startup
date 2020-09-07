@@ -1,0 +1,15 @@
+[Unit]
+Description=gome docker-compose
+Requires=docker.service
+After=docker.service
+
+[Service]
+User=root
+Type=oneshot
+RemainAfterExit=true
+WorkingDirectory=/etc/docker/compose
+ExecStart=/usr/local/bin/docker-compose -f docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose down
+
+[Install]
+WantedBy=multi-user.target
