@@ -4,7 +4,7 @@ GoLang Home Automation - RaspberryPi Setup and gome Installation
 A simple run once to setup, build, and configure the gome application services with
 docker compose.
 
-This is not a how to use gome, only the compose setup. refer to other `gome-*` services for how to use it.  more documentation will be linked as it is written. 
+This is not a how to use gome, only the compose setup. refer to other `gome-*` services for how to use it.  more documentation will be linked as it is written.
 
 ## raspberryPi Setup
 i suggest you do the following, but not required.
@@ -54,3 +54,9 @@ docker-compose[18229]: gome-core_1      | 2020/09/07 00:00:14 INFO: listening go
 docker-compose[18229]: gome-schedule_1  | 2020/09/07 00:00:14 WARN: no state schedules to process, should there be?
 docker-compose[18229]: gome-schedule_1  | 2020/09/07 00:00:14 WARN: no toggle schedules to process, should there be?
 ```
+
+## Upgrade/downgrade gome:
+1. edit the `startUp.sh` & change versions to what you want
+  * ex: GOME_CORE_VERSION=1.4.8
+  * ex: GOME_SCHEDULE_VERSION=1.2.0
+2. run with upgrade param `sudo ./startUp.sh upgrade` - probably a better way to do this, but it works for now. 
