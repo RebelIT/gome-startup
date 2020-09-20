@@ -2,8 +2,8 @@
 
 ##Only edit these items to set the version, nothing else needs to be
 ##  modified for a raspberry pi setup.
-GOME_CORE_VERSION="master"
-GOME_SCHEDULE_VERSION="master"
+GOME_CORE_VERSION="db_lock_issue"
+GOME_SCHEDULE_VERSION="db_lock_issue"
 ### END MODIFY
 
 UPGRADE=$1
