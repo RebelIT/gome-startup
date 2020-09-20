@@ -59,17 +59,17 @@ cd $HOMEDIR
 
 echo "" && echo "*GOME: Composing application"
 docker pull golang:1.15.0-buster
-cp gome.service /etc/systemd/system
+cp -rf gome.service /etc/systemd/system
 mkdir -p /etc/docker/compose > /dev/null
-cp docker-compose.yml /etc/docker/compose/
-cp core-config.env /etc/docker/compose/
-cp schedule-config.env /etc/docker/compose/
+cp -rf docker-compose.yml /etc/docker/compose/
+cp -rf core-config.env /etc/docker/compose/
+cp -rf schedule-config.env /etc/docker/compose/
 
 systemctl daemon-reload
 systemctl enable gome
 
 echo "" && echo "*GOME: Done"
-echo "Please Run:  systemctl start gome"
+echo "Please Run:  sudo systemctl start gome"
 echo "Note that the 1st startup builds the containers and may take a while"
 echo "all other service restarts are fast, sometimes this initial start hangs"
-echo "if 'journalctl -fu gome' reports it is running, ctrl+c out of the service start "
+echo "if 'sudo journalctl -fu gome' reports it is running, ctrl+c out of the service start "
