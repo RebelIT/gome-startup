@@ -50,14 +50,7 @@ systemctl start docker  > /dev/null
 systemctl enable docker  > /dev/null
 
 
-echo "" && echo "*GOME: git cloning gome services from $GITPREFIX"
-cd $INSTALLDIR
-git clone --depth 1 --branch $GOME_CORE_VERSION "$GITPREFIX/$GOME_CORE.git"
-git clone --depth 1 --branch $GOME_SCHEDULE_VERSION "$GITPREFIX/$GOME_SCHEDULE.git"
-cd $HOMEDIR
-
-
-echo "" && echo "*GOME: Composing application"
+echo "" && echo "*GOME: Composing application files"
 docker pull golang:1.15.0-buster
 cp -rf gome.service /etc/systemd/system
 mkdir -p /etc/docker/compose > /dev/null
@@ -65,6 +58,14 @@ cp -rf docker-compose.yml /etc/docker/compose/
 cp -rf core-config.env /etc/docker/compose/
 cp -rf schedule-config.env /etc/docker/compose/
 
+
+echo "" && echo "*GOME: git cloning gome services from $GITPREFIX"
+cd $INSTALLDIR
+git clone --depth 1 --branch $GOME_CORE_VERSION "$GITPREFIX/$GOME_CORE.git"
+git clone --depth 1 --branch $GOME_SCHEDULE_VERSION "$GITPREFIX/$GOME_SCHEDULE.git"
+cd $HOMEDIR
+
+echo "" && echo "*GOME: reload and enable gome.service"
 systemctl daemon-reload
 systemctl enable gome
 
