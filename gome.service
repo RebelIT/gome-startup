@@ -6,9 +6,8 @@ After=network.target docker.service
 [Service]
 Restart=always
 User=root
-Grpoup=docker
 WorkingDirectory=/etc/docker/compose
-ExecStartPre=/usr/local/bin/docker-compose -f docker-compose down -v
+ExecStartPre=/usr/local/bin/docker-compose -f down -v
 ExecStart=/usr/local/bin/docker-compose -f docker-compose.yml up
 ExecStop=/usr/local/bin/docker-compose -f down -v
 
