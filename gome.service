@@ -1,15 +1,16 @@
 [Unit]
 Description=gome docker-compose
 Requires=docker.service
-After=docker.service
+After=network.target docker.service
 
 [Service]
+Restart=always
 User=root
-Type=oneshot
-RemainAfterExit=true
+Grpoup=docker
 WorkingDirectory=/etc/docker/compose
+ExecStartPre=/usr/local/bin/docker-compose -f docker-compose down -v
 ExecStart=/usr/local/bin/docker-compose -f docker-compose.yml up
-ExecStop=/usr/local/bin/docker-compose down
+ExecStop=/usr/local/bin/docker-compose -f down -v
 
 [Install]
 WantedBy=multi-user.target

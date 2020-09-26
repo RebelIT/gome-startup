@@ -18,7 +18,8 @@ HOMEDIR="/home/pi"
 if [[ $UPGRADE = "upgrade" ]]
 then
   echo "*GOME: cleaning repos for new versions"
-  rm -rf $INSTALLDIR
+  rm -rf "$INSTALLDIR/$GOME_CORE"
+    rm -rf "$INSTALLDIR/$GOME_SCHEDULE"
 fi
 
 
